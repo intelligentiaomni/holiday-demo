@@ -1,204 +1,302 @@
-<!-- Load Inter font via Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Holiday Demo — From Entropy to Indexed Elegance · Grove Project</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background-color: #fefefe;
-    font-family: 'Inter', system-ui, sans-serif;
-    line-height: 1.6;
-    color: #223344;
+  :root{
+    --bg:#fbfdff;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#7085FF; /* Grove accent */
+    --accent-2:#7AD0C9;
+    --glass: rgba(255,255,255,0.6);
+    --radius:12px;
+    --pad:18px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color:#0f172a;
   }
-
-  .grove-banner {
-    max-width: 700px;
-    margin: 32px auto;
-    padding: 32px 16px;
-    text-align: center;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    position: relative;
-    background: linear-gradient(180deg, #ffffff 0%, #fff9f2 50%, #f6f8ff 100%);
-    border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(200, 230, 255, 0.5);
-  }
-
-  .grove-banner::before {
-    content: "✨";
-    position: absolute;
-    top: 8px;
-    left: 12px;
-    font-size: 1.2rem;
-    animation: twinkle 3s infinite ease-in-out alternate;
-  }
-
-  .grove-banner::after {
-    content: "✨";
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 1.2rem;
-    animation: twinkle 3s infinite ease-in-out alternate-reverse;
-  }
-
-  @keyframes twinkle {
-    from { opacity: 0.3; transform: scale(0.9) rotate(0deg); }
-    to   { opacity: 1;   transform: scale(1.1) rotate(15deg); }
-  }
-
-  h1.grove-title {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-
-  h1.grove-title span {
-    color: #2b7a2b;
-    text-shadow: 0 0 6px rgba(43, 122, 43, 0.2);
-  }
-
-  h2, h3 {
-    color: #223344;
-    margin-top: 24px;
-    margin-bottom: 12px;
-    font-weight: 600;
-  }
-
-  p, table {
-    font-size: 1rem;
-    margin-bottom: 16px;
-  }
-
-  table {
-    width: 90%;
-    max-width: 700px;
-    margin: 0 auto 16px;
-    border-collapse: collapse;
-  }
-
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px 12px;
-    text-align: left;
-  }
-
-  a {
-    color: #2b7a2b;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  /* Progress bar */
-  .progress-container {
-    width: 80%;
-    background: #eee;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 20px;
-    margin: 10px auto;
-  }
-
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #57cc99, #38a3a5);
-    width: 40%; /* example value */
-  }
-
-  /* Small footer */
-  .footer {
-    font-size: 0.85rem;
-    color: #777;
-    text-align: center;
-    margin-top: 24px;
-  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#f7fbff 0%, #fbfdff 60%); -webkit-font-smoothing:antialiased; padding:18px;}
+  .wrap{max-width:980px;margin:0 auto}
+  header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .logo{display:flex;gap:12px;align-items:center}
+  .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+  h1{font-size:20px;margin:0}
+  .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
+  .hero{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 30px rgba(15,23,42,0.04);margin-bottom:16px;}
+  .hero-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:center}
+  .lead{font-size:15px;color:#10203a;line-height:1.5}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;display:inline-flex;gap:8px;align-items:center}
+  .btn.ghost{background:transparent;border:1px solid rgba(43,108,176,0.12);color:var(--accent)}
+  .panel{background:linear-gradient(180deg,#ffffff, #fbfcff);padding:12px;border-radius:12px}
+  .muted{color:var(--muted);font-size:13px}
+  /* Interactive sandbox */
+  .sandbox{background:linear-gradient(180deg,#f8fbff,#ffffff);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;align-items:center}
+  .stage{width:100%;height:320px;border-radius:10px;background:linear-gradient(180deg,#eef6ff,#ffffff);position:relative;overflow:hidden;border:1px solid rgba(15,23,42,0.04)}
+  /* boxes */
+  .box{position:absolute;width:84px;height:60px;border-radius:8px;background:linear-gradient(180deg,#fff,#f3f6ff);box-shadow:0 10px 18px rgba(15,23,42,0.06);display:flex;align-items:center;justify-content:center;font-weight:600;color:#0f172a;border:1px solid rgba(15,23,42,0.04)}
+  .box.small{width:64px;height:48px}
+  .box.big{width:120px;height:78px}
+  .box-label{font-size:12px;color:#213047}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .toggle{background:#eaf2ff;border-radius:10px;padding:8px 10px;font-weight:600;color:#123;cursor:pointer;border:1px solid rgba(15,23,42,0.04)}
+  .legend{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+  .badge{padding:6px 8px;border-radius:999px;background:rgba(112,133,255,0.12);font-weight:600;color:var(--accent);font-size:13px}
+  /* mission control panel */
+  .mc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .mc .card{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:0 6px 14px rgba(15,23,42,0.04)}
+  .layer-title{font-weight:700;color:#0f172a;margin-bottom:8px}
+  .layer-desc{font-size:13px;color:var(--muted)}
+  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr} .stage{height:260px}}
 </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="mark">G</div>
+        <div>
+          <h1>Grove Holiday Demo: From Entropy to Indexed Elegance</h1>
+          <div class="subtitle">Freeing Frodo from the burden, protecting early researchers from the gollums of fragile logistics.</div>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="muted">Status: <strong>Visibility Phase</strong></div>
+        <div style="font-size:12px;color:var(--muted)">Updated: <strong><!-- EDIT HERE -->${new Date().toISOString().slice(0,10)}</strong></div>
+      </div>
+    </header>
 
-<div class="grove-banner">
-  <h1 class="grove-title">
-    🌲 <span>Grove</span> presents: Hybrid Lab Holiday Fundraiser & Giveaway 
-  </h1>
-</div>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="lead">The Holiday Demo continues, extended to recover and index our physical archive. A transient storage move led to scattered, unlabelled boxes and lost visibility. This page is a mission-control hub: <strong>see</strong> the state, <strong>document</strong> the gaps, and <strong>choose</strong> the rescue path — either local retrieval, buyout, or community-assisted indexing.</p>
 
-<div style="max-width:700px; margin:0 auto; padding:16px;">
-  <h2>🎁 Hybrid Lab Holiday Fundraiser & Giveaway Event 🎁</h2>
-  <div id="holiday-demo"></div>
+          <div class="cta">
+            <a class="btn" id="action-inspect" href="#sandbox">Start Visibility Check</a>
+            <a class="btn ghost" id="action-support" href="https://www.patreon.com/intelligentiaomni" target="_blank">Support Grove</a>
+            <a class="btn ghost" id="action-contact" href="mailto:hello@intelligentiaomni.org">Contact</a>
+          </div>
 
-  <script>
-    fetch('holiday-demo.html')
-      .then(response => {
-        if (!response.ok) throw new Error('Cannot load giveaway HTML');
-        return response.text();
-      })
-      .then(html => {
-        document.getElementById('holiday-demo').innerHTML = html;
-      })
-      .catch(err => console.error(err));
-  </script>
+          <p class="muted" style="margin-top:10px">Quick: play Morrissey if you must, then switch to coding music. Debugging mode activated.</p>
+        </div>
 
-  <p><em>A science-backed experiment in open support for independent AI research</em></p>
+        <aside>
+          <div class="panel">
+            <div style="display:flex;align-items:center;gap:10px;justify-content:space-between">
+              <div>
+                <div style="font-weight:700">Mission Control</div>
+                <div class="muted" style="font-size:13px">Preview: transform entropy → index</div>
+              </div>
+              <div class="badge">Prototype</div>
+            </div>
 
-  <h3>💡 Overview</h3>
-  <p>
-    This holiday season, our small hybrid AI lab is relocating, turning the move into an <strong>experiment in community support</strong>.  
-    We’re sharing selected materials from our early workspace. It's a mix of electronics, books, study items, and symbolic artifacts as <strong>tokens of appreciation</strong> to those who help sustain our open research and sandbox development.
-  </p>
+            <div class="mc" style="margin-top:12px">
+              <div class="card">
+                <div class="layer-title">Physical 🦾</div>
+                <div class="layer-desc">Robots, carts, and helpers move boxes — we define safe handling and visibility protocols.</div>
+              </div>
+              <div class="card">
+                <div class="layer-title">Digital Twin 🧩</div>
+                <div class="layer-desc">Every box annotated: QR, photo, rough contents, priority, and owner notes.</div>
+              </div>
+              <div class="card">
+                <div class="layer-title">Cognitive 🧠</div>
+                <div class="layer-desc">Grove agent suggests optimal packing, retrieval order, and minimal-cost transport plans.</div>
+              </div>
+              <div class="card">
+                <div class="layer-title">Community 🌐</div>
+                <div class="layer-desc">Advocates, volunteers, and witnesses help with documentation and ethics checks.</div>
+              </div>
+            </div>
+          </div>
 
-  <h3>🎯 Purpose & Funding Goal</h3>
-  <p>
-    Help us raise <strong>$7,000–$15,000</strong> to sustain a <strong>6–12 month hybrid lab research phase</strong> supporting housing, meals, and connectivity for coding and experimental projects.
-  </p>
+          <div class="panel" style="margin-top:12px">
+            <div style="font-weight:700">Quick actions</div>
+            <div class="muted" style="margin-top:8px">
+              • Inspect storage with trusted witness.<br>
+              • Request Shurgard access logs & photos.<br>
+              • Alert insurer & file police report if necessary.<br>
+              • Book a transport or ask the community for a pickup run.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  <div class="progress-container">
-    <div class="progress-bar"></div>
+    <!-- INTERACTIVE SANDBOX -->
+    <section id="sandbox" class="sandbox">
+      <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
+        <div style="font-weight:700">Visibility Sandbox</div>
+        <div class="legend">
+          <div class="badge">Entropy</div>
+          <div class="badge" style="background:rgba(122,208,201,0.12);color:var(--accent-2)">Indexed</div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage" aria-hidden="false">
+        <!-- initial messy boxes (absolute positions set by JS) -->
+      </div>
+
+      <div class="controls">
+        <button class="toggle" id="btn-shuffle">Shuffle (entropy)</button>
+        <button class="toggle" id="btn-index">Index & Organize</button>
+        <button class="toggle" id="btn-photo">Take Photos (simulate)</button>
+        <button class="toggle" id="btn-export">Export Index (JSON)</button>
+      </div>
+
+      <div id="status" style="font-size:13px;color:var(--muted);margin-top:6px">Status: <strong>unindexed</strong></div>
+    </section>
+
+    <footer>
+      <div class="muted">Grove Project Holiday Demo Extension • Mission: Indexed Elegance</div>
+      <div style="margin-top:8px"><small class="muted">License: CC BY-NC • Built with Grove ethos — protect builders, make logistics trusted, transparent, accountable.</small></div>
+    </footer>
   </div>
-  <p style="text-align:center; font-size:0.9rem; color:#555;">Progress: $6,000 raised of $15,000 goal (example)</p>
 
-  <h3>🧩 Shared Materials</h3>
-  <table>
-    <tr><th>Category</th><th>Description</th><th>Condition</th><th>Qty</th></tr>
-    <tr><td>Electronics & Components</td><td>Sensors, tools, small devices</td><td>Functional</td><td>Mixed</td></tr>
-    <tr><td>Books & Notebooks</td><td>Reference works, sketchbooks, journals</td><td>Good</td><td>Various</td></tr>
-    <tr><td>Creative Prints & Records</td><td>Visual drafts, design posters, music records</td><td>Good</td><td>5–10</td></tr>
-    <tr><td>Symbolic Artifacts</td><td>Heirlooms and mementos from early lab</td><td>Mixed</td><td>Few</td></tr>
-  </table>
+<script>
+/* ======================
+   Interactive sandbox logic
+   ====================== */
 
-  <h3>🧭 How to Participate</h3>
-  <p>
-    <strong>Support the Lab</strong><br>
-    – Donate via <a href="https://paypal.me/PrincipiaLab" target="_blank">PayPal</a><br>
-    – Or become a monthly supporter via <a href="https://patreon.com/intelligentiaomni">Patreon</a>
+const stage = document.getElementById('stage');
+const statusEl = document.getElementById('status');
 
-  <p>
-    <strong>Optional Giveaway Registration:</strong><br>
-    Complete the form → <a href="https://forms.gle/cfzPCmoVtP63TXDk6" target="_blank">Google Form</a>
-  </p>
+const boxTemplates = [
+  {type:'A',label:'Books',w:84,h:60},
+  {type:'B',label:'Heirloom',w:120,h:78},
+  {type:'C',label:'Kitchen',w:84,h:60},
+  {type:'D',label:'Art',w:64,h:48},
+  {type:'E',label:'Misc',w:84,h:60}
+];
 
-  <h3>🗓️ Timeline</h3>
-  <p>
-    Entries close: <strong>≈ November 02</strong><br>
-    Winners announced: <strong>November 03</strong><br>
-    Transparency log published: <strong>December 2025</strong>
-  </p>
+let boxes = [];
+let indexed = false;
 
-  <h3>💳 Support Channels</h3>
-  <p>💫 Every contribution sustains our open, ethical AI development covering hosting, research tools, and documentation.</p>
+// helper: create a box element
+function makeBox(id, tpl, x, y){
+  const el = document.createElement('div');
+  el.className = 'box' + (tpl.w>100 ? ' big' : '') + (tpl.w<70 ? ' small' : '');
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  el.style.width = tpl.w + 'px';
+  el.style.height = tpl.h + 'px';
+  el.dataset.id = id;
+  el.dataset.type = tpl.type;
+  el.innerHTML = '<div class="box-label">'+tpl.label+'</div>';
+  return el;
+}
 
-  <p style="text-align:center;">
-    <a href="https://paypal.me/PrincipiaLab" target="_blank">
-      <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal Donate" />
-    <p>
-  <a href="https://patreon.com/intelligentiaomni" target="_blank">
-    <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" 
-         alt="Support us on Patreon" 
-         height="38">
-  </a>
-</p>
+// init messy layout
+function initMessy(){
+  stage.innerHTML = '';
+  boxes = [];
+  const w = stage.clientWidth, h = stage.clientHeight;
+  for(let i=0;i<10;i++){
+    const tpl = boxTemplates[i % boxTemplates.length];
+    const x = Math.random() * (w-140) + 10;
+    const y = Math.random() * (h-80) + 10;
+    const id = 'B'+(i+1);
+    const el = makeBox(id, tpl, x, y);
+    stage.appendChild(el);
+    boxes.push({id:id,type:tpl.type,label:tpl.label,x, y, w:tpl.w, h:tpl.h});
+  }
+  indexed = false;
+  statusEl.innerHTML = 'Status: <strong>unindexed</strong>';
+}
 
+// index & organize (neat grid)
+function indexOrganize(){
+  const cols = 3;
+  const pad = 18;
+  const boxW = 120, boxH = 84;
+  const startX = 28, startY = 18;
+  boxes.forEach((b,i)=>{
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const nx = startX + col*(boxW + pad);
+    const ny = startY + row*(boxH + pad);
+    const el = stage.querySelector('[data-id="'+b.id+'"]');
+    // animate to new spot
+    el.style.transition = 'all 700ms cubic-bezier(.2,.9,.3,1)';
+    el.style.left = nx + 'px';
+    el.style.top = ny + 'px';
+    el.style.width = boxW + 'px';
+    el.style.height = boxH + 'px';
+    // update store
+    b.x = nx; b.y = ny; b.w = boxW; b.h = boxH;
+  });
+  indexed = true;
+  statusEl.innerHTML = 'Status: <strong>indexed</strong>';
+}
 
-  <div class="footer">© 2025 IO Lab</div>
-</div>
+// shuffle (reintroduce entropy)
+function shuffleMess(){
+  const w = stage.clientWidth, h = stage.clientHeight;
+  boxes.forEach((b)=>{
+    const el = stage.querySelector('[data-id="'+b.id+'"]');
+    const nx = Math.random() * (w-140) + 10;
+    const ny = Math.random() * (h-80) + 10;
+    el.style.transition = 'all 500ms ease';
+    el.style.left = nx + 'px';
+    el.style.top = ny + 'px';
+    b.x = nx; b.y = ny;
+  });
+  indexed = false;
+  statusEl.innerHTML = 'Status: <strong>unindexed</strong>';
+}
+
+// simulate taking photos (attach data)
+function takePhotos(){
+  const photos = boxes.map(b=>({
+    id:b.id, label:b.label, coords:{x:b.x,y:b.y}, timestamp: new Date().toISOString()
+  }));
+  // small visual flash
+  stage.style.boxShadow = '0 0 0 2000px rgba(112,133,255,0.03) inset';
+  setTimeout(()=>stage.style.boxShadow='none',300);
+  alert('Photos captured for ' + photos.length + ' boxes. (Simulated)');
+  console.log('Captured photos:', photos);
+}
+
+// export index
+function exportIndex(){
+  if(!indexed){ if(!confirm('Storage not indexed yet. Export current layout?')) return; }
+  const payload = { exportedAt: new Date().toISOString(), boxes: boxes};
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload, null, 2));
+  const dl = document.createElement('a');
+  dl.setAttribute('href', dataStr);
+  dl.setAttribute('download', 'grove-storage-index.json');
+  document.body.appendChild(dl);
+  dl.click();
+  dl.remove();
+}
+
+// wire up
+document.getElementById('btn-shuffle').addEventListener('click',()=>shuffleMess());
+document.getElementById('btn-index').addEventListener('click',()=>indexOrganize());
+document.getElementById('btn-photo').addEventListener('click',()=>takePhotos());
+document.getElementById('btn-export').addEventListener('click',()=>exportIndex());
+
+// initial setup
+initMessy();
+
+// quick helpers for CTAs
+document.getElementById('action-inspect').addEventListener('click',(e)=>{
+  e.preventDefault();
+  document.getElementById('sandbox').scrollIntoView({behavior:'smooth'});
+});
+
+// small keyboard shortcuts: i = index, s = shuffle, p = photo
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='i') indexOrganize();
+  if(e.key==='s') shuffleMess();
+  if(e.key==='p') takePhotos();
+});
+</script>
+</body>
+</html>

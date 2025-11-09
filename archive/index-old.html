@@ -1,0 +1,204 @@
+<!-- Load Inter font via Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #fefefe;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #223344;
+  }
+
+  .grove-banner {
+    max-width: 700px;
+    margin: 32px auto;
+    padding: 32px 16px;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    position: relative;
+    background: linear-gradient(180deg, #ffffff 0%, #fff9f2 50%, #f6f8ff 100%);
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(200, 230, 255, 0.5);
+  }
+
+  .grove-banner::before {
+    content: "✨";
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 1.2rem;
+    animation: twinkle 3s infinite ease-in-out alternate;
+  }
+
+  .grove-banner::after {
+    content: "✨";
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.2rem;
+    animation: twinkle 3s infinite ease-in-out alternate-reverse;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.3; transform: scale(0.9) rotate(0deg); }
+    to   { opacity: 1;   transform: scale(1.1) rotate(15deg); }
+  }
+
+  h1.grove-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  h1.grove-title span {
+    color: #2b7a2b;
+    text-shadow: 0 0 6px rgba(43, 122, 43, 0.2);
+  }
+
+  h2, h3 {
+    color: #223344;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  p, table {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
+  table {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto 16px;
+    border-collapse: collapse;
+  }
+
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  a {
+    color: #2b7a2b;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Progress bar */
+  .progress-container {
+    width: 80%;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+    margin: 10px auto;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #57cc99, #38a3a5);
+    width: 40%; /* example value */
+  }
+
+  /* Small footer */
+  .footer {
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+    margin-top: 24px;
+  }
+</style>
+
+<div class="grove-banner">
+  <h1 class="grove-title">
+    🌲 <span>Grove</span> presents: Hybrid Lab Holiday Fundraiser & Giveaway 
+  </h1>
+</div>
+
+<div style="max-width:700px; margin:0 auto; padding:16px;">
+  <h2>🎁 Hybrid Lab Holiday Fundraiser & Giveaway Event 🎁</h2>
+  <div id="holiday-demo"></div>
+
+  <script>
+    fetch('holiday-demo.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Cannot load giveaway HTML');
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('holiday-demo').innerHTML = html;
+      })
+      .catch(err => console.error(err));
+  </script>
+
+  <p><em>A science-backed experiment in open support for independent AI research</em></p>
+
+  <h3>💡 Overview</h3>
+  <p>
+    This holiday season, our small hybrid AI lab is relocating, turning the move into an <strong>experiment in community support</strong>.  
+    We’re sharing selected materials from our early workspace. It's a mix of electronics, books, study items, and symbolic artifacts as <strong>tokens of appreciation</strong> to those who help sustain our open research and sandbox development.
+  </p>
+
+  <h3>🎯 Purpose & Funding Goal</h3>
+  <p>
+    Help us raise <strong>$7,000–$15,000</strong> to sustain a <strong>6–12 month hybrid lab research phase</strong> supporting housing, meals, and connectivity for coding and experimental projects.
+  </p>
+
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+  <p style="text-align:center; font-size:0.9rem; color:#555;">Progress: $6,000 raised of $15,000 goal (example)</p>
+
+  <h3>🧩 Shared Materials</h3>
+  <table>
+    <tr><th>Category</th><th>Description</th><th>Condition</th><th>Qty</th></tr>
+    <tr><td>Electronics & Components</td><td>Sensors, tools, small devices</td><td>Functional</td><td>Mixed</td></tr>
+    <tr><td>Books & Notebooks</td><td>Reference works, sketchbooks, journals</td><td>Good</td><td>Various</td></tr>
+    <tr><td>Creative Prints & Records</td><td>Visual drafts, design posters, music records</td><td>Good</td><td>5–10</td></tr>
+    <tr><td>Symbolic Artifacts</td><td>Heirlooms and mementos from early lab</td><td>Mixed</td><td>Few</td></tr>
+  </table>
+
+  <h3>🧭 How to Participate</h3>
+  <p>
+    <strong>Support the Lab</strong><br>
+    – Donate via <a href="https://paypal.me/PrincipiaLab" target="_blank">PayPal</a><br>
+    – Or become a monthly supporter via <a href="https://patreon.com/intelligentiaomni">Patreon</a>
+
+  <p>
+    <strong>Optional Giveaway Registration:</strong><br>
+    Complete the form → <a href="https://forms.gle/cfzPCmoVtP63TXDk6" target="_blank">Google Form</a>
+  </p>
+
+  <h3>🗓️ Timeline</h3>
+  <p>
+    Entries close: <strong>≈ November 02</strong><br>
+    Winners announced: <strong>November 03</strong><br>
+    Transparency log published: <strong>December 2025</strong>
+  </p>
+
+  <h3>💳 Support Channels</h3>
+  <p>💫 Every contribution sustains our open, ethical AI development covering hosting, research tools, and documentation.</p>
+
+  <p style="text-align:center;">
+    <a href="https://paypal.me/PrincipiaLab" target="_blank">
+      <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal Donate" />
+    <p>
+  <a href="https://patreon.com/intelligentiaomni" target="_blank">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" 
+         alt="Support us on Patreon" 
+         height="38">
+  </a>
+</p>
+
+
+  <div class="footer">© 2025 IO Lab</div>
+</div>
