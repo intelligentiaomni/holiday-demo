@@ -1,0 +1,28 @@
+name: Export Holiday Demo Index
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: "JSON payload from Holiday Demo site"
+        required: false
+        default: "{}"
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Save payload to file
+        run: |
+          echo "${{ github.event.inputs.payload }}" > export_payload.json
+          cat export_payload.json
+
+      - name: Commit & Push export
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add export_payload.json
+          git commit -m "Export from Holiday Demo via workflow"
+          git push
