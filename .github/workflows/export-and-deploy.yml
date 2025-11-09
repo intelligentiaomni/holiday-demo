@@ -1,0 +1,38 @@
+name: Export and Deploy Holiday Demo Index
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: "JSON payload from Holiday Demo site"
+        required: false
+        default: "{}"
+
+jobs:
+  export-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Save payload to file
+        run: |
+          mkdir -p exports
+          echo "${{ github.event.inputs.payload }}" > exports/export_payload.json
+          cat exports/export_payload.json
+
+      - name: Commit export to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add exports/export_payload.json
+          git commit -m "Export payload from Holiday Demo"
+          git push origin main
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./exports
